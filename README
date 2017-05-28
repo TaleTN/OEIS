@@ -1,0 +1,29 @@
+ABOUT
+
+A collection of OEIS <https://oeis.org/> integer sequence generators coded
+in C using LibTomMath.
+
+GETTING STARTED
+
+1. Get LibTomMath
+
+   git clone https://github.com/libtom/libtommath.git
+
+2. Build LibTomMath
+
+   [n]make [-f makefile.gcc] libtommath
+
+3. Generate sequence (simplified, does not require LibTomMath)
+
+   [n]make [-f makefile.gcc] aNNNNNN
+
+4. Generate b-file (requires LibTomMath)
+
+   [n]make [-f makefile.gcc] bNNNNNN
+
+LICENSE
+
+Copyright (C) 2016, 2017 Theo Niessink <theo@taletn.com>
+This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
