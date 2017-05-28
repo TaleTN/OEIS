@@ -165,6 +165,14 @@ b050971: b050970.c $(LTM_OBJECTS)
 	$(CC) $(CFLAGS) /Ilibtommath /DA050971 /Feb050971.exe $**
 	b050971.exe > b050971.txt
 
+a276321: a276321.c
+	$(CC) $(CFLAGS) $**
+	a276321.exe > b276321.txt
+
+b276321: b276321.c $(LTM_OBJECTS)
+	$(CC) $(CFLAGS) /Ilibtommath $**
+	b276321.exe > b276321.txt
+
 clean:
 	for /r %i in (*.obj *.exe) do @del "%i"
 	for %i in (b??????.txt) do @if exist "%i" del "%i"

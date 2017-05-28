@@ -25,6 +25,7 @@ INCLUDED SEQUENCES
 
 A050970 - Favard constant (numerators).
 A050971 - Favard constant (denominators).
+A276321 - B-spline interpolation matrices.
 
 LICENSE
 
