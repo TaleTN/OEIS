@@ -22,18 +22,17 @@ void mp_fact(mp_int* y, int n)
 
 void K(int r, mp_int* num, mp_int* denom, mp_int* tbl)
 {
-	mp_int a, b, x, y, *pair;
+	mp_int a, b, y, *pair;
 	int i, j, k;
 
-	mp_init_multi(&a, &b, &x, &y, NULL);
+	mp_init_multi(&a, &b, &y, NULL);
 
 	for (i = 1; i <= r; ++i)
 	{
 		if (mp_cmp_d(tbl + 2*i, 0) == MP_EQ)
 		{
 			mp_fact(&b, i);
-			mp_2expt(&x, i);
-			mp_mul(&b, &x, &b);
+			mp_mul_2d(&b, i, &b);
 
 			mp_set(&y, 1);
 			for (j = 1; j < i; j += 2)
@@ -43,8 +42,7 @@ void K(int r, mp_int* num, mp_int* denom, mp_int* tbl)
 
 				mp_fact(&a, k);
 				mp_mul(&a, pair + 1, &a);
-				mp_2expt(&x, k);
-				mp_mul(&a, &x, &a);
+				mp_mul_2d(&a, k, &a);
 
 				mp_div(&b, &a, &a, NULL);
 				mp_mul(&a, pair, &a);
@@ -68,7 +66,7 @@ void K(int r, mp_int* num, mp_int* denom, mp_int* tbl)
 		}
 	}
 
-	mp_clear_multi(&a, &b, &x, &y, NULL);
+	mp_clear_multi(&a, &b, &y, NULL);
 
 	pair = tbl + 2*r;
 	mp_copy(pair, num);
