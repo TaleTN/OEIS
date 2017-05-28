@@ -149,6 +149,22 @@ libtommath/%.o: libtommath/%.c
 
 libtommath: $(LTM_OBJECTS)
 
+a050970: a050970.c
+	$(CC) $(CFLAGS) -o a050970 $^
+	./a050970
+
+b050970: b050970.c $(LTM_OBJECTS)
+	$(CC) $(CFLAGS) -I./libtommath -o b050970 $^
+	./b050970 > b050970.txt
+
+a050971: a050970.c
+	$(CC) $(CFLAGS) -DA050971 -o a050971 $^
+	./a050971
+
+b050971: b050970.c $(LTM_OBJECTS)
+	$(CC) $(CFLAGS) -I./libtommath -DA050971 -o b050971 $^
+	./b050971 > b050971.txt
+
 clean:
 	rm -f `find . -type f | grep "[.]o" | xargs`
 	rm -f a?????? b?????? b??????.txt

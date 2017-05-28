@@ -149,6 +149,22 @@ default:
 
 libtommath: $(LTM_OBJECTS)
 
+a050970: a050970.c
+	$(CC) $(CFLAGS) $**
+	a050970.exe
+
+b050970: b050970.c $(LTM_OBJECTS)
+	$(CC) $(CFLAGS) /Ilibtommath $**
+	b050970.exe > b050970.txt
+
+a050971: a050970.c
+	$(CC) $(CFLAGS) /DA050971 /Fea050971.exe $**
+	a050971.exe
+
+b050971: b050970.c $(LTM_OBJECTS)
+	$(CC) $(CFLAGS) /Ilibtommath /DA050971 /Feb050971.exe $**
+	b050971.exe > b050971.txt
+
 clean:
 	for /r %i in (*.obj *.exe) do @del "%i"
 	for %i in (b??????.txt) do @if exist "%i" del "%i"
