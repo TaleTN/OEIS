@@ -1,50 +1,62 @@
+/*
+  Copyright (C) 2016, 2017 Theo Niessink <theo@taletn.com>
+  This work is free. You can redistribute it and/or modify it under the
+  terms of the Do What The Fuck You Want To Public License, Version 2,
+  as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+
+  M(n, i, j) = C(n-1, i) * Sum_{m=j..n-1} (n-(m+1))^i * (-1)^(m-j) * C(n, m-j), where binomial coefficient C(n, k) = n! / (k!*(n-k)!).
+
+*/
+
 #include <stdio.h>
 
-long long int fact(int n)
+long long ipow(int b, int p)
 {
-	long long int y = 1;
+	long long y = 1;
+	int i;
+	for (i = 1; i <= p; ++i) y *= b;
+	return y;
+}
+
+unsigned long long ifact(int n)
+{
+	unsigned long long y = 1;
 	int i;
 	for (i = 1; i <= n; ++i) y *= i;
 	return y;
 }
 
-long long int ipow(int n, int p)
+unsigned long long C(int n, int k)
 {
-	long long int y = 1;
-	int i;
-	for (i = 0; i < p; ++i) y *= n;
-	return y;
+	return ifact(n) / (ifact(k) * ifact(n - k));
 }
 
-long long int C(int n, int k)
+long long M(int n, int i, int j)
 {
-	return fact(n) / (fact(k) * fact(n - k));
-}
-
-long long int M(int n, int i, int j)
-{
-	long long int y = 0;
+	long long sum = 0;
 	int m;
 	for (m = j; m < n; ++m)
 	{
-		y += ipow(n - (m + 1), i) * ipow(-1, m - j) * C(n, m - j);
+		sum += ipow(n - (m + 1), i) * ipow(-1, m - j) * C(n, m - j);
 	}
-	return C(n - 1, i) * y;
+	return C(n - 1, i) * sum;
 }
 
 int main()
 {
-	int n, i, j;
+	long long y;
+	int n, i, j, x = 0;
+
+	printf("# A276321\n");
 	for (n = 1; n <= 20; ++n)
 	{
 		for (i = 0; i < n; ++i)
 		{
 			for (j = 0; j < n; ++j)
 			{
-				const long long int y = M(n, i, j);
-				printf("%lld, ", y);
+				y = M(n, i, j);
+				printf("%d %lld\n", ++x, y);
 			}
 		}
 	}
-	printf("...\n");
 }
