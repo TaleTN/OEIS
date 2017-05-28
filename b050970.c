@@ -47,7 +47,8 @@ void K(int r, mp_int* num, mp_int* denom, mp_int* tbl)
 				mp_div(&b, &a, &a, NULL);
 				mp_mul(&a, pair, &a);
 
-				if (j & 2) mp_add(&y, &a, &y); else mp_sub(&y, &a, &y);
+				if (!(j & 2)) mp_neg(&a, &a);
+				mp_add(&y, &a, &y);
 			}
 			mp_abs(&y, &a);
 
