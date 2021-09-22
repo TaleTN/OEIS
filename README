@@ -11,15 +11,15 @@ GETTING STARTED
 
 2. Build LibTomMath
 
-   [n]make [-f makefile.gcc] libtommath
+   [n]make libtommath
 
 3. Generate sequence (simplified, does not require LibTomMath)
 
-   [n]make [-f makefile.gcc] aNNNNNN
+   [n]make aNNNNNN
 
 4. Generate b-file (requires LibTomMath)
 
-   [n]make [-f makefile.gcc] bNNNNNN
+   [n]make bNNNNNN
 
 INCLUDED SEQUENCES
 
@@ -29,7 +29,7 @@ A276321 - B-spline interpolation matrices.
 
 LICENSE
 
-Copyright (C) 2016, 2017 Theo Niessink <theo@taletn.com>
+Copyright (C) 2016-2021 Theo Niessink <theo@taletn.com>
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
