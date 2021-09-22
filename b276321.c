@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2016, 2017 Theo Niessink <theo@taletn.com>
+  Copyright (C) 2016-2021 Theo Niessink <theo@taletn.com>
   This work is free. You can redistribute it and/or modify it under the
   terms of the Do What The Fuck You Want To Public License, Version 2,
   as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -17,7 +17,7 @@ void mp_pow(mp_int* y, int b, int p)
 {
 	mp_set(y, abs(b));
 	if (b < 0) mp_neg(y, y);
-	mp_expt_d(y, p, y);
+	mp_expt_n(y, p, y);
 }
 
 void mp_fact(mp_int* y, int n)
@@ -83,7 +83,7 @@ int main()
 			{
 				M(&y, n, i, j);
 
-				mp_toradix(&y, str, 10);
+				mp_to_decimal(&y, str, sizeof(str));
 				printf("%d %s\n", ++x, str);
 			}
 		}
